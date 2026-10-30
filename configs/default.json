@@ -1,0 +1,65 @@
+{
+  "dataset_doi": "10.17603/ds2-8yc7-1285",
+  "structural_model": "2D steel moment resisting frame, story-wise grouped W-sections",
+  "seed": 42,
+  "buildings": {
+    "train": 435,
+    "validation": 93,
+    "test": 93
+  },
+  "ground_motion_record_split": {
+    "train": 168,
+    "validation": 36,
+    "test": 36
+  },
+  "maximum_stories": 19,
+  "design_groups_per_story": 3,
+  "geometry_features": 8,
+  "continuous_attributes": [
+    "log_cross_section_area_m2",
+    "log_nominal_depth_m"
+  ],
+  "generator": {
+    "width": 256,
+    "transformer_layers": 12,
+    "attention_heads": 8,
+    "graph_layers": 3,
+    "diffusion_steps": 500,
+    "beta_start": 0.0001,
+    "beta_end": 0.02,
+    "dropout": 0.1,
+    "category_loss_weight": 1.0,
+    "attribute_consistency_weight": 0.2,
+    "classifier_free_drop_probability": 0.15
+  },
+  "surrogate": {
+    "ensemble_members": 5,
+    "width": 256,
+    "maximum_epochs": 200
+  },
+  "risk": {
+    "cvar_alpha": 0.9,
+    "peak_drift_limit": 0.02,
+    "floor_acceleration_mps2_limit": 14.71,
+    "residual_drift_limit": 0.01,
+    "seismic_weight": 1.0,
+    "mass_weight": 0.05
+  },
+  "training": {
+    "generator_batch_size": 16,
+    "generator_max_epochs": 300,
+    "adamw_lr": 0.0002,
+    "weight_decay": 0.01,
+    "early_stopping_patience": 30
+  },
+  "pilot_experiment": {
+    "generator_width": 96,
+    "layers": 3,
+    "heads": 4,
+    "surrogate_members": 1,
+    "generator_epochs": 18,
+    "surrogate_epochs": 9,
+    "structure_cases": 5,
+    "candidates_per_case": 4
+  }
+}

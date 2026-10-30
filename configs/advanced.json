@@ -1,0 +1,20 @@
+{
+  "archive": "DesignSafe.zip",
+  "structure_splits": {"train": 435, "validation": 93, "test": 93},
+  "section_properties": ["A_m2", "depth_m", "Ix_m4", "Zx_m3", "Iy_m4", "Zy_m3"],
+  "four_level_graph": ["member", "joint", "story", "building"],
+  "graph_aggregation": "member-node and member-story normalized pooling with learned nonlinear updates",
+  "diffusion": {"blocks": 12, "width": 256, "heads": 8, "physical_graph_layers": 3, "timesteps": 500,
+                "noise_beta_start": 0.0001, "noise_beta_end": 0.02,
+                "categorical_loss_weight": 1.0, "physical_consistency_weight": 0.2,
+                "optimizer": "AdamW", "learning_rate": 0.0002, "weight_decay": 0.01},
+  "short_executed_training": {"epochs_per_seed": 6, "batch_size": 32, "seeds": [42, 2026, 3407]},
+  "long_run_plan": {"epochs_per_seed": 300, "completed": false},
+  "performance_limits_exploratory": [0.02, 14.71, 0.01],
+  "joint_screen": {"min_plastic_modulus_ratio": 1.0, "formal_AISC_acceptance": false},
+  "risk": {"tail_fraction": 0.1, "soft_proxy_uses_prediction_model": true,
+           "generated_design_opensees_validation": false},
+  "active_learning": {"initial_published_buildings": 60, "additional_published_buildings_per_round": 20,
+                      "rounds": 5, "ground_motions_per_building": 60,
+                      "oracle": "published DesignSafe response matrices", "new_openSees_calls": 0}
+}
